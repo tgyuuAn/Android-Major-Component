@@ -8,7 +8,7 @@ class CalendarStateTest : BehaviorSpec(body = {
     lateinit var calendarState: CalendarState
 
     beforeEach {
-        calendarState = CalendarState()
+        calendarState = CalendarState(LocalDate.of(2025, 4, 1))
     }
 
     given("달력은") {
@@ -25,6 +25,16 @@ class CalendarStateTest : BehaviorSpec(body = {
                     val actual = calendarState.selectedDate
                     actual shouldBe expected
                 }
+            }
+        }
+
+        `when`("다음 달로 이동하였을 경우") {
+            then("다음 달 달력을 보여준다.") {
+                calendarState.onNextMonthClick()
+
+                val expected = 5
+                val actual = calendarState.currentMonth
+                actual shouldBe expected
             }
         }
     }
