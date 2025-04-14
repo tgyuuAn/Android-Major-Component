@@ -32,7 +32,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
     buildFeatures {
         compose = true
@@ -57,10 +57,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    testImplementation(libs.kotest)
+    testImplementation(libs.kotest.junit5)
     testImplementation(libs.kotest.assertion)
     testImplementation(libs.kotest.property)
-    androidTestImplementation(libs.kotest)
-    androidTestImplementation(libs.kotest.assertion)
-    androidTestImplementation(libs.kotest.property)
+    testImplementation(libs.kotest.engine)
 }

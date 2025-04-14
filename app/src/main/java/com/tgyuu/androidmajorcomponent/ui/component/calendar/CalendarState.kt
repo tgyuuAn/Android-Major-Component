@@ -1,4 +1,6 @@
 package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
-class CalendarState() {
+import java.time.LocalDate
+
+class CalendarState(val originSelectedDate: LocalDate) {
 }
