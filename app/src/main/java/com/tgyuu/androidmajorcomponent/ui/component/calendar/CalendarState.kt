@@ -5,6 +5,7 @@ import java.time.LocalDate
 class CalendarState(val originSelectedDate: LocalDate = LocalDate.now()) {
     var selectedDate: LocalDate? = null
     var currentMonthDate: LocalDate = originSelectedDate
+    var appliedDate: LocalDate? = null
 
     fun onSelectDate(date: LocalDate) {
         selectedDate = date
@@ -12,5 +13,9 @@ class CalendarState(val originSelectedDate: LocalDate = LocalDate.now()) {
 
     fun onNextMonthClick() {
         currentMonthDate = currentMonthDate.plusMonths(1)
+    }
+
+    fun onApplyDate(date: LocalDate) {
+        appliedDate = date
     }
 }
