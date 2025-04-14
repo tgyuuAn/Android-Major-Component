@@ -37,5 +37,22 @@ class CalendarStateTest : BehaviorSpec(body = {
                 actual shouldBe expected
             }
         }
+
+        `when`("선택을 완료하였을 경우") {
+            val appliedDates = listOf(
+                LocalDate.of(2025, 4, 1),
+                LocalDate.of(2024, 12, 31),
+            )
+
+            appliedDates.forEach { date ->
+                then("선택 완료한 날짜를 저장한다.") {
+                    calendarState.onApplyDate(date)
+
+                    val expected = date
+                    val actual = calendarState.appliedDate
+                    actual shouldBe expected
+                }
+            }
+        }
     }
 })
