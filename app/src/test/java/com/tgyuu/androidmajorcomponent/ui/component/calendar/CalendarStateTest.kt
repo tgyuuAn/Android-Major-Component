@@ -33,7 +33,7 @@ class CalendarStateTest : BehaviorSpec(body = {
                 calendarState.onNextMonthClick()
 
                 val expected = 5
-                val actual = calendarState.currentMonth
+                val actual = calendarState.currentMonthDate.monthValue
                 actual shouldBe expected
             }
         }
