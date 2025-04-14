@@ -38,6 +38,16 @@ class CalendarStateTest : BehaviorSpec(body = {
             }
         }
 
+        `when`("이전 달로 이동하였을 경우") {
+            then("이전 달 달력을 보여준다.") {
+                calendarState.onPreviousMonthClick()
+
+                val expected = 3
+                val actual = calendarState.currentMonthDate.monthValue
+                actual shouldBe expected
+            }
+        }
+
         `when`("선택을 완료하였을 경우") {
             val appliedDates = listOf(
                 LocalDate.of(2025, 4, 1),
