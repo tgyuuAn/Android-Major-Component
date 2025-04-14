@@ -32,7 +32,6 @@ import java.time.LocalDate
 import java.time.format.TextStyle.FULL
 import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Calendar(
     year: Int,
@@ -128,7 +127,6 @@ private fun DayOfWeekLabel() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun CalendarBody(
     year: Int,

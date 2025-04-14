@@ -5,30 +5,26 @@ import io.kotest.matchers.shouldBe
 import java.time.LocalDate
 
 class CalendarStateTest : BehaviorSpec(body = {
+    lateinit var calendarState: CalendarState
+
+    beforeEach {
+        calendarState = CalendarState()
+    }
+
     given("달력은") {
-        `when`("생성될 때") {
-            val dateDatas = listOf(
+        `when`("특정한 날짜를 선택했을 경우") {
+            val selectedDates = listOf(
                 LocalDate.of(2025, 4, 1),
                 LocalDate.of(2024, 12, 31),
             )
-            dateDatas.forEach { date ->
-                val calendarState = CalendarState(date)
+            selectedDates.forEach { selectedDate ->
+                then("선택한 날짜를 저장한다.") {
+                    calendarState.onSelectDate(selectedDate)
 
-                then("기존에 선택된 날짜로 되돌아오기 위해 기존에 선택된 날짜를 저장한다.") {
-                    val expected = date
-                    val actual = calendarState.originSelectedDate
+                    val expected = selectedDate
+                    val actual = calendarState.selectedDate
                     actual shouldBe expected
                 }
-            }
-        }
-
-        `when`("생성될 때 아무런 날짜도 선택하지 않았을 경우"){
-            val calendarState = CalendarState()
-
-            then("오늘 날짜를 저장한다.") {
-                val expected = LocalDate.now()
-                val actual = calendarState.originSelectedDate
-                actual shouldBe expected
             }
         }
     }
