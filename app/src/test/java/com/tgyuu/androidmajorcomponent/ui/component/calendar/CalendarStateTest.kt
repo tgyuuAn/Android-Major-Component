@@ -21,5 +21,15 @@ class CalendarStateTest : BehaviorSpec(body = {
                 }
             }
         }
+
+        `when`("생성될 때 아무런 날짜도 선택하지 않았을 경우"){
+            val calendarState = CalendarState()
+
+            then("오늘 날짜를 저장한다.") {
+                val expected = LocalDate.now()
+                val actual = calendarState.originSelectedDate
+                actual shouldBe expected
+            }
+        }
     }
 })
