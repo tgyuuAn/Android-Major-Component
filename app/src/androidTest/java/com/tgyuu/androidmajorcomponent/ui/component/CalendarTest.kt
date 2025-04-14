@@ -4,12 +4,13 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 import org.junit.Rule
 import org.junit.Test
 import java.time.LocalDate
 
-class MatchingScreenTest {
+class NormalCalendarTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -22,7 +23,7 @@ class MatchingScreenTest {
         // when
         composeTestRule.setContent {
             AndroidMajorComponentTheme {
-                Calendar(calendarState)
+                NormalCalendar(calendarState)
             }
         }
 
