@@ -1,8 +1,10 @@
 package com.tgyuu.androidmajorcomponent.ui.component
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
@@ -51,5 +53,23 @@ class NormalCalendarTest {
 
         composeTestRule.onNodeWithContentDescription("달력 바디")
             .assertIsDisplayed()
+    }
+
+    @Test
+    fun 달력은_헤더는_월화수목금토일_순서로_배치된다() {
+        //given
+        val calendarState = CalendarState(LocalDate.of(2025, 4, 1))
+
+        // when
+        laidOutNormalCalendar(calendarState)
+
+        // then
+        val expectedDays = listOf("월", "화", "수", "목", "금", "토", "일")
+
+        expectedDays.forEachIndexed { index, day ->
+            composeTestRule
+                .onNodeWithTag("dayOfWeek_$index")
+                .assertTextEquals(day)
+        }
     }
 }
