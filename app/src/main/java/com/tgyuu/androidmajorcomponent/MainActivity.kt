@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,11 +22,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidMajorComponentTheme {
                 val calendarState = remember { CalendarState() }
-                rememberLazyListState()
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-
+                        NormalCalendar(calendarState)
                     }
                 }
             }

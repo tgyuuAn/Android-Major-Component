@@ -41,7 +41,7 @@ class NormalCalendarTest {
     }
 
     @Test
-    fun 달력은_헤더와_달력_바디로_구성된다() {
+    fun 달력은_컨트롤러_헤더_바디로_구성된다() {
         //given
         val calendarState = CalendarState(LocalDate.of(2025, 4, 1))
 
@@ -49,6 +49,9 @@ class NormalCalendarTest {
         laidOutNormalCalendar(calendarState)
 
         // then
+        composeTestRule.onNodeWithContentDescription("달력 컨트롤러")
+            .assertIsDisplayed()
+
         composeTestRule.onNodeWithContentDescription("달력 헤더")
             .assertIsDisplayed()
 
