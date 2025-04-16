@@ -56,4 +56,19 @@ class DateUtilTest : BehaviorSpec({
             }
         }
     }
+
+    given("두 날짜가 주어졌을 때") {
+        val from = LocalDate.of(2025,4,1)
+        val to = LocalDate.of(2025,5,1)
+
+        `when`("두 날짜의 달의 차이를 구해서") {
+            val actual = yearMonthDiff(from, to)
+
+            then("반환한다.") {
+                val expected = 1
+
+                actual shouldBe expected
+            }
+        }
+    }
 })

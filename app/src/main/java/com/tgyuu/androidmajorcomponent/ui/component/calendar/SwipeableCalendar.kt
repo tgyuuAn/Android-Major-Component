@@ -28,10 +28,10 @@ fun SwipeableCalendar(
         initialPage = initialPage,
         pageCount = { Int.MAX_VALUE },
     )
+    val currentOffset = pagerState.currentPage - initialPage
 
     LaunchedEffect(pagerState.currentPage) {
-        val offset = pagerState.currentPage - initialPage
-        val newDate = calendarState.originSelectedDate.plusMonths(offset.toLong())
+        val newDate = calendarState.originSelectedDate.plusMonths(currentOffset.toLong())
         calendarState.currentDisplayDate = newDate
     }
 
