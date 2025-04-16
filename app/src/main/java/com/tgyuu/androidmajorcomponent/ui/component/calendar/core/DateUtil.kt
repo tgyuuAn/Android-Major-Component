@@ -19,3 +19,7 @@ fun DayOfWeek.isWeekend(): Boolean = when (this) {
     DayOfWeek.SATURDAY, DayOfWeek.SUNDAY -> true
     else -> false
 }
+
+fun yearMonthDiff(from: LocalDate, to: LocalDate): Int {
+    return (to.year - from.year) * 12 + (to.monthValue - from.monthValue)
+}
