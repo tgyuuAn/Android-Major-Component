@@ -1,7 +1,7 @@
 package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.shouldBe
 import java.time.LocalDate
 
 class DateUtilTest : BehaviorSpec({
@@ -14,7 +14,7 @@ class DateUtilTest : BehaviorSpec({
                 // 2025-04-16은 수요일
                 val expected = false
 
-                actual shouldContainExactly expected
+                actual shouldBe expected
             }
         }
 
@@ -27,7 +27,7 @@ class DateUtilTest : BehaviorSpec({
                 // 2025-04-19은 토요일
                 val expected = true
 
-                actual shouldContainExactly expected
+                actual shouldBe expected
             }
         }
     }
