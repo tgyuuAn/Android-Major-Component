@@ -32,7 +32,7 @@ fun getPreviousMonthDatesToShow(date: LocalDate): List<Int> {
  * 해당 월의 달력을 6줄 7칸 기준으로 그릴 때,
  * 1일 전에 보여야 할 이전 달의 요일 목록을 반환합니다.
  */
-fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
+private fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
     val firstDayOfMonth = getFirstDayOfWeek(date)
     val count = if (firstDayOfMonth == DayOfWeek.SUNDAY) {
         7
