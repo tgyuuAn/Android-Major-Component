@@ -38,13 +38,13 @@ fun NormalCalendar(
         modifier = modifier,
     ) {
         CalendarController(
-            currentDate = calendarState.currentMonthDate,
+            currentDate = calendarState.currentDisplayDate,
             onPrevMonthClick = calendarState::onPreviousMonthClick,
             onNextMonthClick = calendarState::onNextMonthClick,
         )
         CalendarHeader()
         CalendarBody(
-            currentDate = calendarState.currentMonthDate,
+            currentDate = calendarState.currentDisplayDate,
             selectedDate = calendarState.selectedDate,
             onDateSelect = calendarState::onDateSelect,
         )

@@ -45,7 +45,7 @@ class CalendarStateTest {
             calendarState.onDateSelect(selectedDate)
 
             // then
-            val actual = calendarState.currentMonthDate
+            val actual = calendarState.currentDisplayDate
             val expected = selectedDate
             assertThat(actual).isEqualTo(expected)
         }
@@ -58,7 +58,7 @@ class CalendarStateTest {
 
         // then
         val expected = 5
-        val actual = calendarState.currentMonthDate.monthValue
+        val actual = calendarState.currentDisplayDate.monthValue
         assertThat(actual).isEqualTo(expected)
     }
 
@@ -69,7 +69,7 @@ class CalendarStateTest {
 
         // then
         val expected = 3
-        val actual = calendarState.currentMonthDate.monthValue
+        val actual = calendarState.currentDisplayDate.monthValue
         assertThat(actual).isEqualTo(expected)
     }
 
