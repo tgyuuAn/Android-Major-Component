@@ -14,6 +14,7 @@ import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.CalendarState
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.ui.CalendarBody
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.ui.CalendarController
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.ui.CalendarHeader
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.yearMonthDiff
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -60,8 +61,19 @@ fun SwipeableCalendar(
                 currentDate = calendarState.currentDisplayDate,
                 selectedDate = calendarState.selectedDate,
                 onDateSelect = { selectedDate ->
-                    calendarState.onDateSelect(selectedDate)
-                    onDateSelect(selectedDate)
+                    val selectedOffset =
+                        yearMonthDiff(calendarState.originSelectedDate, selectedDate)
+
+                    if (selectedOffset != currentOffset) {
+                        scope.launch {
+                            pagerState.animateScrollToPage(initialPage + selectedOffset)
+                            calendarState.onDateSelect(selectedDate)
+                            onDateSelect(selectedDate)
+                        }
+                    } else {
+                        calendarState.onDateSelect(selectedDate)
+                        onDateSelect(selectedDate)
+                    }
                 },
             )
         }
