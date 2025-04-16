@@ -9,7 +9,7 @@ class DateUtilTest : BehaviorSpec({
     given("특정 날짜가 주어졌을 때") {
         val givenDate = LocalDate.of(2025, 5, 16)
 
-        `when`("달력에서 이전 달이 보이는 날짜를 구해서") {
+        `when`("6*7 달력에 이전 달이 보이는 날짜를 구해서") {
             val actual = getPreviousMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
@@ -22,7 +22,7 @@ class DateUtilTest : BehaviorSpec({
             }
         }
 
-        `when`("달력에 보이는 이번 달 날짜를 구해서") {
+        `when`("6*7 달력에 보이는 이번 달 날짜를 구해서") {
             val actual = getCurrentMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
@@ -31,7 +31,7 @@ class DateUtilTest : BehaviorSpec({
             }
         }
 
-        `when`("달력에 보이는 다음 달 날짜를 구해서") {
+        `when`("6*7 달력에 보이는 다음 달 날짜를 구해서") {
             val actual = getNextMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
