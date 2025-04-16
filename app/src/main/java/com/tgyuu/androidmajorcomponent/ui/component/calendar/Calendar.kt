@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -43,6 +45,7 @@ fun NormalCalendar(
         CalendarHeader()
         CalendarBody(
             currentDate = calendarState.currentMonthDate,
+            selectedDate = calendarState.selectedDate,
             onDateSelect = calendarState::onDateSelect,
         )
     }
@@ -110,6 +113,7 @@ private fun CalendarHeader(modifier: Modifier = Modifier) {
 @Composable
 private fun CalendarBody(
     currentDate: LocalDate,
+    selectedDate: LocalDate?,
     onDateSelect: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -119,18 +123,39 @@ private fun CalendarBody(
         modifier = modifier.semantics { contentDescription = "달력 바디" },
     ) {
         items(items = getCalendarDates(currentDate)) {
-            val textColor = when {
-                !it.isCurrentMonth -> Color.LightGray
-                it.dayOfWeek.isWeekend() -> Color.Red
-                else -> Color.DarkGray
-            }
-
-            Text(
-                text = it.dayOfMonth.toString(),
-                textAlign = TextAlign.Center,
-                color = textColor,
-                modifier = Modifier.clickable { onDateSelect(it.date) },
+            CalendarDayItem(
+                calendarDate = it,
+                selectedDate = selectedDate,
+                onDateSelect = onDateSelect,
             )
         }
+    }
+}
+
+@Composable
+private fun CalendarDayItem(
+    calendarDate: CalendarDate,
+    selectedDate: LocalDate?,
+    onDateSelect: (LocalDate) -> Unit,
+) {
+    val textColor = when {
+        !calendarDate.isCurrentMonth -> Color.LightGray
+        calendarDate.date == selectedDate -> Color.White
+        calendarDate.dayOfWeek.isWeekend() -> Color.Red
+        else -> Color.DarkGray
+    }
+
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = if (calendarDate.date == selectedDate) Color.DarkGray else Color.Transparent,
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
+            .clickable { onDateSelect(calendarDate.date) },
+    ) {
+        Text(
+            text = calendarDate.dayOfMonth.toString(),
+            textAlign = TextAlign.Center,
+            color = textColor,
+        )
     }
 }
