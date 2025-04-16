@@ -7,7 +7,7 @@ class CalendarState(val originSelectedDate: LocalDate = LocalDate.now()) {
     var currentMonthDate: LocalDate = originSelectedDate
     var appliedDate: LocalDate? = null
 
-    fun onSelectDate(date: LocalDate) {
+    fun onDateSelect(date: LocalDate) {
         selectedDate = date
     }
 

@@ -19,7 +19,7 @@ class CalendarStateTest : BehaviorSpec(body = {
             )
             selectedDates.forEach { selectedDate ->
                 then("선택한 날짜를 저장한다.") {
-                    calendarState.onSelectDate(selectedDate)
+                    calendarState.onDateSelect(selectedDate)
 
                     val expected = selectedDate
                     val actual = calendarState.selectedDate
