@@ -7,12 +7,13 @@ import androidx.compose.runtime.setValue
 import java.time.LocalDate
 
 class CalendarState(val originSelectedDate: LocalDate = LocalDate.now()) {
-    var selectedDate by mutableStateOf<LocalDate?>(null)
     var currentMonthDate by mutableStateOf(originSelectedDate)
+    var selectedDate by mutableStateOf<LocalDate?>(null)
     var appliedDate by mutableStateOf<LocalDate?>(null)
 
     fun onDateSelect(date: LocalDate) {
         selectedDate = date
+        currentMonthDate = date
         Log.d("test", "onDateSelect 호출 $selectedDate")
     }
 
