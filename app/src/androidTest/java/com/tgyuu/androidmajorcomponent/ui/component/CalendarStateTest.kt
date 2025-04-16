@@ -72,21 +72,4 @@ class CalendarStateTest {
         val actual = calendarState.currentDisplayDate.monthValue
         assertThat(actual).isEqualTo(expected)
     }
-
-    @Test
-    fun `선택을_완료하였을_경우_선택한_날짜를_저장한다`() {
-        // given
-        val appliedDates = listOf(
-            LocalDate.of(2025, 4, 1),
-            LocalDate.of(2024, 12, 31),
-        )
-
-        for (date in appliedDates) {
-            // when
-            calendarState.onApplyDate(date)
-
-            // then
-            assertThat(calendarState.appliedDate).isEqualTo(date)
-        }
-    }
 }
