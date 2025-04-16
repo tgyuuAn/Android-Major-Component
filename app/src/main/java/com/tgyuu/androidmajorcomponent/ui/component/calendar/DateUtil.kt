@@ -13,6 +13,14 @@ fun DayOfWeek.toKorean(): String = when (this) {
     DayOfWeek.SUNDAY -> "일"
 }
 
+fun getNextMonthDatesToShow(date: LocalDate): List<Int> {
+    val totalDayCountUntilNextMonth =
+        getPreviousMonthDatesToShow(date).size + getCurrentMonthDatesToShow(date).size
+    val remainCount = 42 - totalDayCountUntilNextMonth
+
+    return (1..remainCount).toList()
+}
+
 fun getCurrentMonthDatesToShow(date: LocalDate): List<Int> {
     val lastDayOfCurrentMonth = date.lengthOfMonth()
 

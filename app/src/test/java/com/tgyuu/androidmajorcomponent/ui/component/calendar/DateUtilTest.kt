@@ -22,7 +22,18 @@ class DateUtilTest : BehaviorSpec({
             val actual = getCurrentMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
+                // 5월은 31일까지 존재
                 val expected = (1..31).toList()
+                actual shouldBe expected
+            }
+        }
+
+        `when`("달력에 보이는 다음 달 날짜를 구해서") {
+            val actual = getNextMonthDatesToShow(givenDate)
+
+            then("반환할 수 있다.") {
+                // 2025-05-01일 달력에서 6월은 1일부터 8일까지 보임
+                val expected = listOf(1, 2, 3, 4, 5, 6, 7, 8)
                 actual shouldBe expected
             }
         }
