@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.SwipeableCalendar
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.rememberCalendarState
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-                        NormalCalendar(
+                        SwipeableCalendar(
                             calendarState = calendarState,
                             onDateSelect = { Log.d("test", it.toString()) },
                         )

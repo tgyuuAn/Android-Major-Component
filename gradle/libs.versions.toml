@@ -15,6 +15,7 @@ uiTestJunit4Android = "1.7.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
