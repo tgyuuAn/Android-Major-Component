@@ -32,5 +32,14 @@ class DateUtilTest : BehaviorSpec({
                 actual shouldBe expected
             }
         }
+
+        `when`("달력에 보이는 이번 달 날짜를 구해서") {
+            val actual = getCurrentMonthDatesToShow(givenDate)
+
+            then("반환할 수 있다.") {
+                val expected = (1..31).toList()
+                actual shouldBe expected
+            }
+        }
     }
 })
