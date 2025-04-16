@@ -9,29 +9,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.rememberCalendarState
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             AndroidMajorComponentTheme {
-                val calendarState = remember {
-                    CalendarState(
-                        onDateSelectCallBack = { selectedDate ->
-                            Log.d("test", selectedDate.toString())
-                        }
-                    )
-                }
+                val calendarState = rememberCalendarState()
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-                        NormalCalendar(calendarState)
+                        NormalCalendar(
+                            calendarState = calendarState,
+                            onDateSelect = { Log.d("test", it.toString()) },
+                        )
                     }
                 }
             }

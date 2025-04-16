@@ -32,6 +32,7 @@ import java.time.LocalDate
 fun NormalCalendar(
     calendarState: CalendarState,
     modifier: Modifier = Modifier,
+    onDateSelect: (LocalDate) -> Unit = {},
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -46,7 +47,10 @@ fun NormalCalendar(
         CalendarBody(
             currentDate = calendarState.currentDisplayDate,
             selectedDate = calendarState.selectedDate,
-            onDateSelect = calendarState::onDateSelect,
+            onDateSelect = { selectedDate ->
+                calendarState.onDateSelect(selectedDate)
+                onDateSelect(selectedDate)
+            },
         )
     }
 }
