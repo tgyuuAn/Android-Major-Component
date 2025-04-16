@@ -10,10 +10,12 @@ activityCompose = "1.10.1"
 composeBom = "2024.09.00"
 kotest = "5.8.0"
 junit4 = "4.13.2"
+assertjCore = "3.24.2"
 uiTestJunit4Android = "1.7.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertion = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }

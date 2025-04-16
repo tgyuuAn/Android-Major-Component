@@ -56,8 +56,8 @@ fun getNextMonthDatesToShow(date: LocalDate): List<CalendarDate> {
  */
 private fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
     val firstDayOfMonth = getFirstDayOfWeek(date)
-    val count = if (firstDayOfMonth == DayOfWeek.SUNDAY) 7 else firstDayOfMonth.value - 1
-    return (1..count).map { DayOfWeek.of(it) }
+    val count = (firstDayOfMonth.ordinal).coerceIn(0..6)
+    return (0 until count).map { DayOfWeek.of((it + 1)) }
 }
 
 /**

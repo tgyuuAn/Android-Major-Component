@@ -37,10 +37,13 @@ android {
     buildFeatures {
         compose = true
     }
-    testOptions {
-        unitTests.all {
-            it.useJUnitPlatform()
-        }
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+        javaLauncher.set(
+            javaToolchains.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(21))
+            }
+        )
     }
 }
 
@@ -63,5 +66,5 @@ dependencies {
     testImplementation(libs.kotest.property)
     testImplementation(libs.kotest.engine)
     androidTestImplementation(libs.junit4)
-    testImplementation(kotlin("test"))
+    androidTestImplementation(libs.assertj.core)
 }
