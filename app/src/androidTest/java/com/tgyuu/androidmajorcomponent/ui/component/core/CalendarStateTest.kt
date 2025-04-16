@@ -1,7 +1,7 @@
-package com.tgyuu.androidmajorcomponent.ui.component
+package com.tgyuu.androidmajorcomponent.ui.component.core
 
-import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
-import org.assertj.core.api.Assertions.assertThat
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.CalendarState
+import org.assertj.core.api.Assertions
 import org.junit.Before
 import org.junit.Test
 import java.time.LocalDate
@@ -28,7 +28,7 @@ class CalendarStateTest {
             calendarState.onDateSelect(selectedDate)
 
             // then
-            assertThat(calendarState.selectedDate).isEqualTo(selectedDate)
+            Assertions.assertThat(calendarState.selectedDate).isEqualTo(selectedDate)
         }
     }
 
@@ -47,7 +47,7 @@ class CalendarStateTest {
             // then
             val actual = calendarState.currentDisplayDate
             val expected = selectedDate
-            assertThat(actual).isEqualTo(expected)
+            Assertions.assertThat(actual).isEqualTo(expected)
         }
     }
 
@@ -59,7 +59,7 @@ class CalendarStateTest {
         // then
         val expected = 5
         val actual = calendarState.currentDisplayDate.monthValue
-        assertThat(actual).isEqualTo(expected)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 
     @Test
@@ -70,6 +70,6 @@ class CalendarStateTest {
         // then
         val expected = 3
         val actual = calendarState.currentDisplayDate.monthValue
-        assertThat(actual).isEqualTo(expected)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

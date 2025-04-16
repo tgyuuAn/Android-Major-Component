@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
-import com.tgyuu.androidmajorcomponent.ui.component.calendar.rememberCalendarState
+import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.rememberCalendarState
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 
 class MainActivity : ComponentActivity() {

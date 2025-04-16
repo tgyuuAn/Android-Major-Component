@@ -1,4 +1,4 @@
-package com.tgyuu.androidmajorcomponent.ui.component.calendar
+package com.tgyuu.androidmajorcomponent.ui.component.calendar.core
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
