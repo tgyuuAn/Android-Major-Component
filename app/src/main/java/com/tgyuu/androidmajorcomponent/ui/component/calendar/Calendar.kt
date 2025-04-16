@@ -69,9 +69,9 @@ private fun CalendarBody(
         columns = GridCells.Fixed(7),
         modifier = modifier.semantics { contentDescription = "달력 바디" },
     ) {
-        items(items = getDatesToShow(currentDate)) { date ->
+        items(items = getCalendarDates(currentDate)) {
             Text(
-                text = date.dayOfMonth.toString(),
+                text = it.dayOfMonth.toString(),
                 textAlign = TextAlign.Center,
             )
         }
