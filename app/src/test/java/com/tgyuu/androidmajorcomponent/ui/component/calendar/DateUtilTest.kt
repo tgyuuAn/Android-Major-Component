@@ -5,6 +5,7 @@ import io.kotest.matchers.shouldBe
 import java.time.LocalDate
 
 class DateUtilTest : BehaviorSpec({
+
     given("특정 날짜가 주어졌을 때") {
         val givenDate = LocalDate.of(2025, 5, 16)
 
@@ -12,8 +13,11 @@ class DateUtilTest : BehaviorSpec({
             val actual = getPreviousMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
-                // 2025-05-01일 달력에서 4월 28일, 29일, 30일이 보임
-                val expected = listOf(28, 29, 30)
+                val expected = listOf(
+                    LocalDate.of(2025, 4, 28),
+                    LocalDate.of(2025, 4, 29),
+                    LocalDate.of(2025, 4, 30),
+                )
                 actual shouldBe expected
             }
         }
@@ -22,8 +26,7 @@ class DateUtilTest : BehaviorSpec({
             val actual = getCurrentMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
-                // 5월은 31일까지 존재
-                val expected = (1..31).toList()
+                val expected = (1..31).map { LocalDate.of(2025, 5, it) }
                 actual shouldBe expected
             }
         }
@@ -32,8 +35,7 @@ class DateUtilTest : BehaviorSpec({
             val actual = getNextMonthDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
-                // 2025-05-01일 달력에서 6월은 1일부터 8일까지 보임
-                val expected = listOf(1, 2, 3, 4, 5, 6, 7, 8)
+                val expected = (1..8).map { LocalDate.of(2025, 6, it) }
                 actual shouldBe expected
             }
         }

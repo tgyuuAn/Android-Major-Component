@@ -13,27 +13,30 @@ fun DayOfWeek.toKorean(): String = when (this) {
     DayOfWeek.SUNDAY -> "일"
 }
 
-fun getNextMonthDatesToShow(date: LocalDate): List<Int> {
+fun getNextMonthDatesToShow(date: LocalDate): List<LocalDate> {
     val totalDayCountUntilNextMonth =
         getPreviousMonthDatesToShow(date).size + getCurrentMonthDatesToShow(date).size
     val remainCount = 42 - totalDayCountUntilNextMonth
 
-    return (1..remainCount).toList()
+    val nextMonth = date.withDayOfMonth(1).plusMonths(1)
+    return (1..remainCount).map { nextMonth.withDayOfMonth(it) }
 }
 
-fun getCurrentMonthDatesToShow(date: LocalDate): List<Int> {
-    val lastDayOfCurrentMonth = date.lengthOfMonth()
-
-    return (1..lastDayOfCurrentMonth).toList()
+fun getCurrentMonthDatesToShow(date: LocalDate): List<LocalDate> {
+    val yearMonth = date.withDayOfMonth(1)
+    val lastDay = yearMonth.lengthOfMonth()
+    return (1..lastDay).map { day -> yearMonth.withDayOfMonth(day) }
 }
 
-fun getPreviousMonthDatesToShow(date: LocalDate): List<Int> {
+fun getPreviousMonthDatesToShow(date: LocalDate): List<LocalDate> {
     val previousMonth = date.withDayOfMonth(1).minusMonths(1)
     val lastDayOfPreviousMonth = previousMonth.lengthOfMonth()
 
     val count = getPreviousMonthDayOfWeeksToShow(date).size
 
-    return ((lastDayOfPreviousMonth - count + 1)..lastDayOfPreviousMonth).toList()
+    return ((lastDayOfPreviousMonth - count + 1)..lastDayOfPreviousMonth).map {
+        previousMonth.withDayOfMonth(it)
+    }
 }
 
 /**
@@ -42,12 +45,7 @@ fun getPreviousMonthDatesToShow(date: LocalDate): List<Int> {
  */
 private fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
     val firstDayOfMonth = getFirstDayOfWeek(date)
-    val count = if (firstDayOfMonth == DayOfWeek.SUNDAY) {
-        7
-    } else {
-        firstDayOfMonth.value - 1
-    }
-
+    val count = if (firstDayOfMonth == DayOfWeek.SUNDAY) 7 else firstDayOfMonth.value - 1
     return (1..count).map { DayOfWeek.of(it) }
 }
 
