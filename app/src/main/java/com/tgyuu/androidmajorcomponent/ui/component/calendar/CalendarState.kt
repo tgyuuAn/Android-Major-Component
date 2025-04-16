@@ -1,5 +1,6 @@
 package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 class CalendarState(val originSelectedDate: LocalDate = LocalDate.now()) {

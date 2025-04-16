@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 @Composable
@@ -31,18 +32,24 @@ private fun CalendarHeader(
     currentDate: LocalDate,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier.semantics { contentDescription = "달력 헤더" }) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics { contentDescription = "달력 헤더" },
+    ) {
         Text(
             text = "${currentDate.year}년 ${currentDate.monthValue}월",
         )
 
         Row(modifier = Modifier.fillMaxWidth()) {
-            listOf("월", "화", "수", "목", "금", "토", "일").forEachIndexed { idx, weekday ->
+            DayOfWeek.entries.forEachIndexed { idx, weekday ->
+                val weekDayText = weekday.toKorean()
+
                 Text(
-                    text = weekday,
+                    text = weekDayText,
                     modifier = Modifier
                         .weight(1f)
-                        .semantics { contentDescription = "${weekday}_${idx}" },
+                        .semantics { contentDescription = "${weekDayText}_${idx}" },
                 )
             }
         }
