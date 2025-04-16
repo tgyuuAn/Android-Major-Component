@@ -44,13 +44,18 @@ class DateUtilTest : BehaviorSpec({
             val actual = getDatesToShow(givenDate)
 
             then("반환할 수 있다.") {
-                val expected = listOf(
-                    LocalDate.of(2025, 4, 28),
-                    LocalDate.of(2025, 4, 29),
-                    LocalDate.of(2025, 4, 30),
-                    *(1..31).map { LocalDate.of(2025, 5, it) }.toTypedArray(),
-                    *(1..8).map { LocalDate.of(2025, 6, it) }.toTypedArray(),
-                )
+                val expected = buildList {
+                    addAll(
+                        listOf(
+                            LocalDate.of(2025, 4, 28),
+                            LocalDate.of(2025, 4, 29),
+                            LocalDate.of(2025, 4, 30),
+                        )
+                    )
+                    addAll((1..31).map { LocalDate.of(2025, 5, it) })
+                    addAll((1..8).map { LocalDate.of(2025, 6, it) })
+                }
+
                 actual shouldBe expected
             }
         }
