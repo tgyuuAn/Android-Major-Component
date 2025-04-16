@@ -13,7 +13,9 @@ fun DayOfWeek.toKorean(): String = when (this) {
     DayOfWeek.SUNDAY -> "일"
 }
 
-fun LocalDate.isWeekend(): Boolean = when (this.dayOfWeek) {
+fun LocalDate.isWeekend(): Boolean = this.dayOfWeek.isWeekend()
+
+fun DayOfWeek.isWeekend(): Boolean = when (this) {
     DayOfWeek.SATURDAY, DayOfWeek.SUNDAY -> true
     else -> false
 }
