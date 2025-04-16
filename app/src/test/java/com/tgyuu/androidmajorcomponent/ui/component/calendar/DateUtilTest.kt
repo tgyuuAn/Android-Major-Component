@@ -39,5 +39,20 @@ class DateUtilTest : BehaviorSpec({
                 actual shouldBe expected
             }
         }
+
+        `when`("6*7 달력에 보이는 이전, 현재, 다음달 날짜를 구해서") {
+            val actual = getDatesToShow(givenDate)
+
+            then("반환할 수 있다.") {
+                val expected = listOf(
+                    LocalDate.of(2025, 4, 28),
+                    LocalDate.of(2025, 4, 29),
+                    LocalDate.of(2025, 4, 30),
+                    *(1..31).map { LocalDate.of(2025, 5, it) }.toTypedArray(),
+                    *(1..8).map { LocalDate.of(2025, 6, it) }.toTypedArray(),
+                )
+                actual shouldBe expected
+            }
+        }
     }
 })
