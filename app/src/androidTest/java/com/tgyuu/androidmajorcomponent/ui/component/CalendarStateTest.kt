@@ -1,10 +1,10 @@
 package com.tgyuu.androidmajorcomponent.ui.component
 
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import java.time.LocalDate
-import org.assertj.core.api.Assertions.assertThat
 
 class CalendarStateTest {
 
@@ -29,6 +29,25 @@ class CalendarStateTest {
 
             // then
             assertThat(calendarState.selectedDate).isEqualTo(selectedDate)
+        }
+    }
+
+    @Test
+    fun `다른_달_날짜를_선택했을_경우_선택한_달의_달력을_보여준다`() {
+        // given
+        val selectedDates = listOf(
+            LocalDate.of(2025, 5, 1),
+            LocalDate.of(2025, 3, 1)
+        )
+
+        for (selectedDate in selectedDates) {
+            // when
+            calendarState.onDateSelect(selectedDate)
+
+            // then
+            val actual = calendarState.currentMonthDate
+            val expected = selectedDate
+            assertThat(actual).isEqualTo(expected)
         }
     }
 
