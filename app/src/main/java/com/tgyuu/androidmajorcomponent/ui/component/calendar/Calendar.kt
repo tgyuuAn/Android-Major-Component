@@ -1,6 +1,7 @@
 package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,10 +31,22 @@ private fun CalendarHeader(
     currentDate: LocalDate,
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        text = "${currentDate.year}년 ${currentDate.monthValue}월",
-        modifier = modifier.semantics { contentDescription = "달력 헤더" },
-    )
+    Column(modifier = modifier.semantics { contentDescription = "달력 헤더" }) {
+        Text(
+            text = "${currentDate.year}년 ${currentDate.monthValue}월",
+        )
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            listOf("월", "화", "수", "목", "금", "토", "일").forEachIndexed { idx, weekday ->
+                Text(
+                    text = weekday,
+                    modifier = Modifier
+                        .weight(1f)
+                        .semantics { contentDescription = "${weekday}_${idx}" },
+                )
+            }
+        }
+    }
 }
 
 @Composable

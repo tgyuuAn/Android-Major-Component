@@ -4,7 +4,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.CalendarState
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
@@ -68,7 +67,7 @@ class NormalCalendarTest {
 
         expectedDays.forEachIndexed { index, day ->
             composeTestRule
-                .onNodeWithTag("dayOfWeek_$index")
+                .onNodeWithContentDescription("${day}_$index")
                 .assertTextEquals(day)
         }
     }
