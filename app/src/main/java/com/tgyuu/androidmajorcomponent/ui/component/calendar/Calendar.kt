@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -34,7 +35,10 @@ private fun CalendarController(
 ) {
     Text(
         text = "${currentDate.year}년 ${currentDate.monthValue}월",
+        textAlign = TextAlign.Center,
+        color = Color.DarkGray,
         modifier = modifier
+            .fillMaxWidth()
             .semantics { contentDescription = "달력 컨트롤러" },
     )
 }
@@ -52,6 +56,7 @@ private fun CalendarHeader(modifier: Modifier = Modifier) {
             Text(
                 text = weekDayText,
                 textAlign = TextAlign.Center,
+                color = Color.DarkGray,
                 modifier = Modifier
                     .weight(1f)
                     .semantics { contentDescription = "${weekDayText}_${idx}" },
@@ -73,6 +78,7 @@ private fun CalendarBody(
             Text(
                 text = it.dayOfMonth.toString(),
                 textAlign = TextAlign.Center,
+                color = if (it.isCurrentMonth) Color.DarkGray else Color.LightGray,
             )
         }
     }

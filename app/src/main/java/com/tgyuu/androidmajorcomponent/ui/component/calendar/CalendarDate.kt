@@ -8,6 +8,7 @@ data class CalendarDate(
     val isCurrentMonth: Boolean,
 ) {
     val dayOfMonth: Int = date.dayOfMonth
+    val dayOfWeek: DayOfWeek = date.dayOfWeek
 }
 
 fun getCalendarDates(date: LocalDate): List<CalendarDate> {
