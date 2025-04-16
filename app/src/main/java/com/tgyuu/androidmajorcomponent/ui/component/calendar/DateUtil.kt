@@ -13,11 +13,13 @@ fun DayOfWeek.toKorean(): String = when (this) {
     DayOfWeek.SUNDAY -> "일"
 }
 
-/**
- * 해당 날짜의 달에 1일의 요일을 구합니다.
- */
-private fun getFirstDayOfWeek(date: LocalDate): DayOfWeek {
-    return date.withDayOfMonth(1).dayOfWeek
+fun getPreviousMonthDatesToShow(date: LocalDate): List<Int> {
+    val previousMonth = date.withDayOfMonth(1).minusMonths(1)
+    val lastDayOfPreviousMonth = previousMonth.lengthOfMonth()
+
+    val count = getPreviousMonthDayOfWeeksToShow(date).size
+
+    return ((lastDayOfPreviousMonth - count + 1)..lastDayOfPreviousMonth).toList()
 }
 
 /**
@@ -25,7 +27,7 @@ private fun getFirstDayOfWeek(date: LocalDate): DayOfWeek {
  * 1일 전에 보여야 할 이전 달의 요일 목록을 반환합니다.
  */
 fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
-    val firstDayOfMonth = date.withDayOfMonth(1).dayOfWeek
+    val firstDayOfMonth = getFirstDayOfWeek(date)
     val count = if (firstDayOfMonth == DayOfWeek.SUNDAY) {
         7
     } else {
@@ -33,4 +35,11 @@ fun getPreviousMonthDayOfWeeksToShow(date: LocalDate): List<DayOfWeek> {
     }
 
     return (1..count).map { DayOfWeek.of(it) }
+}
+
+/**
+ * 해당 날짜의 달에 1일의 요일을 구합니다.
+ */
+private fun getFirstDayOfWeek(date: LocalDate): DayOfWeek {
+    return date.withDayOfMonth(1).dayOfWeek
 }
