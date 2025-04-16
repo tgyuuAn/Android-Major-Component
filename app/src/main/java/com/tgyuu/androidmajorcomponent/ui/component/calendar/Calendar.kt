@@ -1,5 +1,6 @@
 package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import java.time.DayOfWeek
 import java.time.LocalDate
 
@@ -21,7 +23,10 @@ fun NormalCalendar(
     calendarState: CalendarState,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier,
+    ) {
         CalendarController(currentDate = calendarState.currentMonthDate)
         CalendarHeader()
         CalendarBody(currentDate = calendarState.currentMonthDate)
@@ -56,7 +61,7 @@ private fun CalendarHeader(modifier: Modifier = Modifier) {
             Text(
                 text = weekDayText,
                 textAlign = TextAlign.Center,
-                color = Color.DarkGray,
+                color = if (weekday.isWeekend()) Color.Red else Color.DarkGray,
                 modifier = Modifier
                     .weight(1f)
                     .semantics { contentDescription = "${weekDayText}_${idx}" },
@@ -72,13 +77,20 @@ private fun CalendarBody(
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(7),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier.semantics { contentDescription = "달력 바디" },
     ) {
         items(items = getCalendarDates(currentDate)) {
+            val textColor = when {
+                !it.isCurrentMonth -> Color.LightGray
+                it.dayOfWeek.isWeekend() -> Color.Red
+                else -> Color.DarkGray
+            }
+
             Text(
                 text = it.dayOfMonth.toString(),
                 textAlign = TextAlign.Center,
-                color = if (it.isCurrentMonth) Color.DarkGray else Color.LightGray,
+                color = textColor,
             )
         }
     }
