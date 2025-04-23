@@ -19,6 +19,9 @@
       <SelectionState runConfigName="다음_달_날짜를_선택했을_경우_다음_달_달력을_보여준다()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="ColorConversionBenchmark">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
