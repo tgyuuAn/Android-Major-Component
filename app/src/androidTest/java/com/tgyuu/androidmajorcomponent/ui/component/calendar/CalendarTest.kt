@@ -1,4 +1,4 @@
-package com.tgyuu.androidmajorcomponent.ui.component
+package com.tgyuu.androidmajorcomponent.ui.component.calendar
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
@@ -6,7 +6,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.CalendarState
-import com.tgyuu.androidmajorcomponent.ui.component.calendar.NormalCalendar
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.toKorean
 import com.tgyuu.androidmajorcomponent.ui.foundation.AndroidMajorComponentTheme
 import org.junit.Rule

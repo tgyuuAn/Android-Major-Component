@@ -1,5 +1,6 @@
 package com.tgyuu.androidmajorcomponent.ui.component.colorpicker
 
+import android.graphics.Color.HSVToColor
 import com.tgyuu.androidmajorcomponent.ui.component.colorpicker.core.HSV
 import com.tgyuu.androidmajorcomponent.ui.component.colorpicker.core.RGB
 
@@ -25,4 +26,13 @@ fun HSV.toRGB(): RGB {
     val g = ((gp + m) * 255).toInt().coerceIn(0, 255)
     val b = ((bp + m) * 255).toInt().coerceIn(0, 255)
     return RGB(r, g, b)
+}
+
+/**
+ * @see <a href="https://developer.android.com/reference/android/graphics/Color#HSVToColor(float[])">
+ *     Android 곧식문서 HSVToColor
+ *     </a>
+ */
+fun HSV.toAndroidRGB(): Int {
+    return HSVToColor(floatArrayOf(h, s, v))
 }

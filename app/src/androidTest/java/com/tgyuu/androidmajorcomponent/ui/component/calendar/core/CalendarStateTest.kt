@@ -1,4 +1,4 @@
-package com.tgyuu.androidmajorcomponent.ui.component.core
+package com.tgyuu.androidmajorcomponent.ui.component.calendar.core
 
 import com.tgyuu.androidmajorcomponent.ui.component.calendar.core.CalendarState
 import org.assertj.core.api.Assertions
