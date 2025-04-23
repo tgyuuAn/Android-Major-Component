@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidMajorComponent"
 include(":app")
+include(":benchmark")
